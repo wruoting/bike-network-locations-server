@@ -20,7 +20,7 @@ const NetworkSchema = new Schema({
     type: String,
     required: true,
   },
-  //  reviews: [Schema.Types.ObjectId],
+  reviews: [Schema.Types.ObjectId],
 });
 
 const Network = mongoose.model('Network', NetworkSchema);
