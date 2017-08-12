@@ -7,7 +7,7 @@ import logger from 'koa-logger';
 
 // routes
 import index from './routes/index';
-import bikeNetworkLocations from './routes/bikeNetworkLocations';
+import bikeNetworkLocations from './routes/networks';
 
 // DB
 import connectMongoose from './db/mongoose';
