@@ -6,7 +6,7 @@ export const getNetworkList = async (ctx, next) => {
 };
 
 export const getStationList = async (ctx, next) => {
-  const { parentNetwork } = ctx.req.params;
+  const { parentNetwork } = ctx.params;
   const stations = await Station.find({ parentNetwork });
   ctx.body = stations;
 };
