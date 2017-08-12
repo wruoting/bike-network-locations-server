@@ -54,4 +54,8 @@ app.use(async (ctx, next) => {
 app.use(bikeNetworkLocations.routes(), bikeNetworkLocations.allowedMethods());
 app.use(index.routes(), index.allowedMethods());
 
-module.exports = app;
+app.listen(3000, () => {
+  console.log('listening on port 8000');
+});
+
+export default app;
