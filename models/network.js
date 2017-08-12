@@ -1,7 +1,7 @@
 import mongoose, { Schema } from 'mongoose';
 
 const NetworkSchema = new Schema({
-  company: String,
+  company: [String],
   href: String,
   id: String,
   location: {
@@ -20,9 +20,9 @@ const NetworkSchema = new Schema({
     type: String,
     required: true,
   },
-  reviews: [Schema.Types.ObjectId],
+  //  reviews: [Schema.Types.ObjectId],
 });
 
-const Network = mongoose.Model('Network', NetworkSchema);
+const Network = mongoose.model('Network', NetworkSchema);
 
 export default Network;

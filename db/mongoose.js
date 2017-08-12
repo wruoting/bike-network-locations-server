@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 mongoose.Promise = global.Promise;
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/honey_dew', {
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/bike-network-locations', {
   useMongoClient: true,
 });
 const db = mongoose.connection;
