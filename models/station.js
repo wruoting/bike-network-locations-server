@@ -17,6 +17,8 @@ const StationSchema = new Schema({
   },
   name: String,
   timestamp: Date,
+  parentNetwork: Schema.Types.ObjectId,
+  reviews: [Schema.Types.ObjectId],
 });
 
 const Station = mongoose.model('Station', StationSchema);
