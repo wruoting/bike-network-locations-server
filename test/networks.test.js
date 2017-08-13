@@ -1,7 +1,9 @@
+require('dotenv').config({ path: './.env.test' });
+
 import Request from 'supertest';
 import app from '../app';
 
-const request = Request.agent(app.listen());
+const request = Request.agent(app);
 
 describe('GET /api/networks', () => {
   it('respond with json', (done) => {

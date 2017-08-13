@@ -1,7 +1,8 @@
 import mongoose from 'mongoose';
 
+console.log(process.env.MONGODB_URI);
 mongoose.Promise = global.Promise;
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/bike-network-locations', {
+mongoose.connect(process.env.MONGODB_URI, {
   useMongoClient: true,
 });
 const db = mongoose.connection;
@@ -12,7 +13,7 @@ function connectMongoose() {
       reject(Error('connection error'));
     });
     db.once('open', () => {
-      resolve("we're connected!");
+      resolve(`we're connected to ${process.env.MONGODB_URI}!`);
     });
   });
 }
