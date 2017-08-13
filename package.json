@@ -6,7 +6,7 @@
     "start": "node bin/www",
     "dev": "nodemon app --exec \"node --require dotenv/config --require babel-register\"",
     "prd": "pm2 start bin/www",
-    "test": "mocha -w --require babel-register"
+    "test": "export NODE_ENV=test && nodemon --exec \"mocha --require babel-register\""
   },
   "dependencies": {
     "axios": "^0.16.2",

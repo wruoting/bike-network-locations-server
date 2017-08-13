@@ -10,18 +10,9 @@ import index from './routes/index';
 import bikeNetworkLocations from './routes/networks';
 
 // DB
-import connectMongoose from './db/mongoose';
+import mongoose from './db/mongoose';
 
-const app = new Koa();
-
-(async () => {
-  try {
-    const isConnected = await connectMongoose();
-    console.log(isConnected);
-  } catch (err) {
-    console.log(err);
-  }
-})();
+export const app = new Koa();
 
 // error handler
 onerror(app);
@@ -33,7 +24,7 @@ app.use(
   }),
 );
 app.use(json());
-app.use(logger());
+if (process.env.NODE_ENV !== 'test') app.use(logger());
 app.use(require('koa-static')(`${__dirname}/public`));
 
 app.use(
@@ -42,14 +33,6 @@ app.use(
   }),
 );
 
-// logger
-app.use(async (ctx, next) => {
-  const start = new Date();
-  await next();
-  const ms = new Date() - start;
-  console.log(`${ctx.method} ${ctx.url} - ${ms}ms`);
-});
-
 // routes
 app.use(bikeNetworkLocations.routes(), bikeNetworkLocations.allowedMethods());
 app.use(index.routes(), index.allowedMethods());
@@ -57,5 +40,3 @@ app.use(index.routes(), index.allowedMethods());
 app.listen(process.env.PORT, () => {
   console.log('listening on port', process.env.PORT);
 });
-
-export default app;
