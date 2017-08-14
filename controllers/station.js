@@ -1,12 +1,22 @@
 import { Network, Station } from '../models';
 
-export const getStation = async (ctx, next) => {
+// GET /api/station/:stationId
+export const getStation = async (ctx) => {
   const { stationId } = ctx.params;
   const station = await Station.findById(stationId);
   ctx.body = station;
 };
 
-export const updateStationSlots = async (ctx, next) => {
+// PUT /api/station/:stationId/slots
+// PUT body = { emptySlots: Number }
+// may change this route signature
+export const updateStation = async (ctx) => {
   const { stationId } = ctx.params;
-  const station = findOneAndUpdate({});
+  const { emptySlots } = ctx.request.body;
+  let station = await Station.findById(stationId);
+  if (emptySlots) {
+    station.empty_slots = emptySlots;
+    station = await station.save();
+  }
+  ctx.body = station;
 };

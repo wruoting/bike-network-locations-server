@@ -1,10 +1,10 @@
 import Router from 'koa-router';
-import { getStation } from '../controllers';
+import { getStation, updateStation } from '../controllers';
 
 const router = new Router();
 
 router.get('/:stationId', getStation);
-router.get('/', getStationList);
+router.put('/:stationId', updateStation);
 
 router.use('/api/stations', router.routes());
 

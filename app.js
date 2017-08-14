@@ -6,8 +6,7 @@ import bodyparser from 'koa-bodyparser';
 import logger from 'koa-logger';
 
 // routes
-import index from './routes/index';
-import bikeNetworkLocations from './routes/networks';
+import { main, networks, stations } from './routes';
 
 // DB
 import mongoose from './db/mongoose';
@@ -34,8 +33,9 @@ app.use(
 );
 
 // routes
-app.use(bikeNetworkLocations.routes(), bikeNetworkLocations.allowedMethods());
-app.use(index.routes(), index.allowedMethods());
+app.use(networks.routes(), networks.allowedMethods());
+app.use(stations.routes(), stations.allowedMethods());
+app.use(main.routes(), main.allowedMethods());
 
 app.listen(process.env.PORT, () => {
   console.log('listening on port', process.env.PORT);

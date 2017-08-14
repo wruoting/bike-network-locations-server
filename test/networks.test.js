@@ -4,7 +4,7 @@ import { app } from '../app';
 
 const request = Request.agent(app.listen());
 
-describe('Server', () => {
+describe('/api/networks Endpoint Tests', () => {
   describe('GET /api/networks', () => {
     it('responds with a json array of objects', (done) => {
       request
