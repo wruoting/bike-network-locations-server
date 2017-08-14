@@ -6,7 +6,7 @@
     "start": "node bin/www",
     "dev": "nodemon app --exec \"node --require dotenv/config --require babel-register\"",
     "prd": "pm2 start bin/www",
-    "test": "mocha -w --compilers babel-register"
+    "test": "export NODE_ENV=test && nodemon --exec \"mocha --require babel-register\""
   },
   "dependencies": {
     "axios": "^0.16.2",
@@ -30,6 +30,7 @@
     "pug": "^2.0.0-rc.1"
   },
   "devDependencies": {
+    "chai": "^4.1.1",
     "eslint": "^4.4.1",
     "eslint-config-airbnb-base": "^11.3.1",
     "eslint-plugin-import": "^2.7.0",

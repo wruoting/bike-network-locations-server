@@ -1,3 +1,5 @@
+import networks from './networks';
+import stations from './stations';
 import Router from 'koa-router';
 
 const router = new Router(); // require('koa-router')()
@@ -18,4 +20,4 @@ router.get('/json', async (ctx) => {
   };
 });
 
-module.exports = router;
+export { router as main, networks, stations };

@@ -1,20 +1,16 @@
 import mongoose from 'mongoose';
 
+const env = process.env.NODE_ENV;
+
+const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/bike-network-locations';
+// if (env === 'test') {
+//   mongoURI = 'bike-network-locations-test';
+// }
+
 mongoose.Promise = global.Promise;
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/bike-network-locations', {
+
+mongoose.connect(mongoURI, {
   useMongoClient: true,
 });
-const db = mongoose.connection;
 
-function connectMongoose() {
-  return new Promise((resolve, reject) => {
-    db.on('error', () => {
-      reject(Error('connection error'));
-    });
-    db.once('open', () => {
-      resolve("we're connected!");
-    });
-  });
-}
-
-export default connectMongoose;
+export default mongoose;
