@@ -19,6 +19,14 @@ const StationSchema = new Schema({
   timestamp: Date,
   parentNetwork: Schema.Types.ObjectId,
   reviews: [Schema.Types.ObjectId],
+  safeForUse: {
+    type: Boolean,
+    default: true,
+  },
+  closed: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const Station = mongoose.model('Station', StationSchema);
