@@ -2,6 +2,16 @@
 
 ### Server side for this project can be written in any language you'd like and backed by any database.
 
+## routes
+
+GET /api/networks --> returns an array of all networks
+
+GET /api/networks/:networkId --> returns an array of all stations belonging to a network
+
+GET /api/stations/:stationId --> returns details of a specific stationId
+
+PUT {emptySlots: Number } /api/stations/:stationId --> returns the details of a specific station with an updated empty_slots field
+
 #### Tasks
 
 1) Design the schema for the database

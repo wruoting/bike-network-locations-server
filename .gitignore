@@ -4,3 +4,4 @@ npm-debug.log
 /*.env
 /front-end
 /build
+config.json

@@ -4,12 +4,13 @@
   "private": true,
   "scripts": {
     "start": "node bin/www",
-    "dev": "nodemon bin/www --exec \"node --require dotenv/config --require babel-register\"",
+    "dev": "nodemon app --exec \"node --require dotenv/config --require babel-register\"",
     "prd": "pm2 start bin/www",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "export NODE_ENV=test && nodemon --exec \"mocha --require babel-register\""
   },
   "dependencies": {
     "babel-loader": "^7.1.1",
+    "axios": "^0.16.2",
     "babel-preset-env": "^1.6.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
@@ -25,6 +26,7 @@
     "koa-router": "^7.1.1",
     "koa-static": "^3.0.0",
     "koa-views": "^5.2.1",
+    "lodash": "^4.17.4",
     "mongodb": "^2.2.31",
     "mongoose": "^4.11.6",
     "pug": "^2.0.0-rc.1",
@@ -35,9 +37,12 @@
     "webpack": "^3.5.4"
   },
   "devDependencies": {
+    "chai": "^4.1.1",
     "eslint": "^4.4.1",
     "eslint-config-airbnb-base": "^11.3.1",
     "eslint-plugin-import": "^2.7.0",
-    "nodemon": "^1.8.1"
+    "mocha": "^3.5.0",
+    "nodemon": "^1.8.1",
+    "supertest": "^3.0.0"
   }
 }
