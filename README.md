@@ -10,8 +10,13 @@ GET /api/networks/:networkId --> returns an array of all stations belonging to a
 
 GET /api/stations/:stationId --> returns details of a specific stationId
 
-PUT {emptySlots: Number } /api/stations/:stationId --> returns the details of a specific station with an updated empty_slots field
-
+PUT /api/stations/:stationId --> returns the details of a specific station with an updated empty_slots field
+  - accepts json
+    - ```{
+        emptySlots: Number,
+        closed: Bool,
+        safe: Bool
+      }```
 #### Tasks
 
 1) Design the schema for the database

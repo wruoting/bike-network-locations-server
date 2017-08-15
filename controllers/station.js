@@ -18,7 +18,7 @@ export const getStation = async (ctx) => {
 export const updateStation = async (ctx) => {
   const { stationId } = ctx.params;
   const { emptySlots, closed, safe } = ctx.request.body;
-  if (_.isEmpty(ctx.request.body)) ctx.body = 'No valid request body found';
+  if (_.isEmpty(ctx.request.body)) return (ctx.body = 'No valid request body found');
   let station = await Station.findById(stationId);
   if (typeof emptySlots === 'number') {
     station.empty_slots = emptySlots;
