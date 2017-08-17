@@ -23,6 +23,7 @@ const reviewSchema = new Schema({
     min: [1, '1 stars is the lowest possible rating'],
     max: [5, '5 stars is the highest possible rating'],
   },
+  text: String,
 });
 
 const Review = mongoose.model('Review', reviewSchema);

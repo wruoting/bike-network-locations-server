@@ -6,7 +6,7 @@ import bodyparser from 'koa-bodyparser';
 import logger from 'koa-logger';
 
 // routes
-import { main, networks, stations } from './routes';
+import { main, networks, stations, reviews } from './routes';
 
 // DB
 import mongoose from './db/mongoose';
@@ -35,6 +35,7 @@ app.use(
 // routes
 app.use(networks.routes(), networks.allowedMethods());
 app.use(stations.routes(), stations.allowedMethods());
+app.use(reviews.routes(), reviews.allowedMethods());
 app.use(main.routes(), main.allowedMethods());
 
 app.listen(process.env.PORT, () => {

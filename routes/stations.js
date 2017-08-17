@@ -1,8 +1,9 @@
 import Router from 'koa-router';
-import { getStation, updateStation } from '../controllers';
+import { getStation, updateStation, getStationReviews } from '../controllers';
 
 const router = new Router();
 
+router.get('/:stationId/reviews', getStationReviews);
 router.get('/:stationId', getStation);
 router.put('/:stationId', updateStation);
 
