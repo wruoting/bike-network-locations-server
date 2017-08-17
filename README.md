@@ -10,13 +10,28 @@ GET /api/networks/:networkId --> returns an array of all stations belonging to a
 
 GET /api/stations/:stationId --> returns details of a specific stationId
 
+GET /api/stations/:stationId/reviews --> returns all reviews in an array for that station
+
 PUT /api/stations/:stationId --> returns the details of a specific station with an updated empty_slots field
   - accepts json
-    - ```{
+    - ```
+    {
         emptySlots: Number,
         closed: Bool,
         safe: Bool
-      }```
+      }
+      ```
+POST /api/reviews/:networkId/:stationId
+  - accepts json
+    - ```
+    {
+      text: String,
+      userName: String,
+      stars: Number 1-5 or throws an error
+    }
+    ```
+
+
 #### Tasks
 
 1) Design the schema for the database
