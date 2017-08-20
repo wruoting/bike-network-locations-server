@@ -1,8 +1,6 @@
 import { default as React, Component} from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 import { withGoogleMap, GoogleMap, Marker } from "react-google-maps";
-import _ from "lodash";
-import Helmet from "react-helmet";
 
 class Station {
 	constructor(obj) {
@@ -120,7 +118,7 @@ class GettingStartedExample extends Component {
             <GoogleMap
             ref={props.onMapLoad}
             defaultZoom={3}
-            defaultCenter={{ lat: -25.363882, lng: 131.044922 }}
+            defaultCenter={{ lat: 40.7624284, lng: -73.973794 }}
             onClick={props.onMapClick}
             >
             {props.markers.map((marker, index) => (
@@ -136,9 +134,6 @@ class GettingStartedExample extends Component {
         
         return (
                 <div style={{height: `100%`}}>
-                <Helmet
-                title="Getting Started"
-                />
                 <Map
                 containerElement={
                     <div style={{ height: `500px` }} />
@@ -159,7 +154,7 @@ class GettingStartedExample extends Component {
 
 }
 
-ReactDOM.render(
+render(
     <GettingStartedExample />,
     document.getElementById('container')
 );
