@@ -49,7 +49,9 @@ class GettingStartedExample extends Component {
         this.dummyNetwork.addStation({lat: 49.805598, lng: 19.057252, name: "11 ul. \u0141agodna/Z\u0142ote \u0141any", timestamp: "2017-08-20T20:33:24.189000Z", id: "4b875887b47798686ce74666a7c39d41", emptySlots: 3, freeBikes: 6});
         this.networks = [this.dummyNetwork]
 		this.state = {
-			markers: this.networks,
+            zoom:3,
+            markers: this.networks,
+            center: { lat: 40.7624284, lng: -73.973794 },
 		};
 
 		this.handleMapLoad = this.handleMapLoad.bind(this);
@@ -91,11 +93,12 @@ class GettingStartedExample extends Component {
          *                * web front end and even with google maps API.)
          *                     */
         const nextMarkers = this.state.markers.filter(marker => marker !== targetMarker);
-        console.log("handleMarkerClick", targetMarker);
-        console.log("handleMarkerClick", nextMarkers);
-        
+
+        let network = this.networks[targetMarker];
         this.setState({
-            markers: this.networks[targetMarker].stations,
+            zoom: 11,
+            center: network.position,
+            markers: network.stations,
         });
     }
 
@@ -117,8 +120,8 @@ class GettingStartedExample extends Component {
         let Map = withGoogleMap(props => (
             <GoogleMap
             ref={props.onMapLoad}
-            defaultZoom={3}
-            defaultCenter={{ lat: 40.7624284, lng: -73.973794 }}
+            defaultZoom={props.zoom}
+            defaultCenter={props.center}
             onClick={props.onMapClick}
             >
             {props.markers.map((marker, index) => (
@@ -141,6 +144,8 @@ class GettingStartedExample extends Component {
                 mapElement={
                     <div style={{ height: `100%` }} />
                 }
+                zoom={this.state.zoom}
+                center={this.state.center}
                 onMapLoad={this.handleMapLoad}
                 onMapClick={this.handleMapClick}
                 markers={this.state.markers}
