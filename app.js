@@ -37,6 +37,7 @@ app.use(networks.routes(), networks.allowedMethods());
 app.use(stations.routes(), stations.allowedMethods());
 app.use(main.routes(), main.allowedMethods());
 
-app.listen(process.env.PORT, () => {
-  console.log('listening on port', process.env.PORT);
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log('listening on port',PORT);
 });
