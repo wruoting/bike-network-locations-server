@@ -4,11 +4,10 @@ import { withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps"
 import { Station, Network } from './models.js';
 
 
-const Map = withGoogleMap(props => (
+let Map = withGoogleMap(props => (
     <GoogleMap
         defaultZoom={props.zoom}
         defaultCenter={props.center}
-        onClick={props.onMapClick}
     >
         {props.markers.map((marker, index) => (
             <Marker
@@ -66,55 +65,21 @@ class GettingStartedExample extends Component {
             center: { lat: 40.7624284, lng: -73.973794 },
         };
 
-        this.handleMapLoad = this.handleMapLoad.bind(this);
-        this.handleMapClick = this.handleMapClick.bind(this);
-        this.handleMarkerRightClick = this.handleMarkerRightClick.bind(this);
         this.handleMarkerClick = this.handleMarkerClick.bind(this);
         this.handleCloseClick = this.handleCloseClick.bind(this);
 
 
     }
-    handleMapLoad(map) {
-        this._mapComponent = map;
-    }
-
-
-    /*
-     *    * This is called when you click on the map.
-     *       * Go and try click now.
-     *          */
-    handleMapClick(event) {
-        // const nextMarkers = [
-        //     ...this.state.markers,
-        //     {
-        //         position: event.latLng,
-        //         defaultAnimation: 2,
-        //         key: Date.now(), // Add a key property for: http://fb.me/react-warning-keys
-        //     },
-        // ];
-        // this.setState({
-        //     markers: nextMarkers,
-        // });
-    }
 
     handleMarkerClick(targetMarker) {
-        /*
-         *      * All you modify is data, and the view is driven by data.
-         *           * This is so called data-driven-development. (And yes, it's now in
-         *                * web front end and even with google maps API.)
-         *                     */
 
-        console.log(this.state.viewMode);
         if (this.state.viewMode == VIEW_MODES.NETWORKS) {
 
             this.setState((prevState) => {
                 const nextMarkers = this.state.markers.filter(marker => {
-                    console.log(marker, targetMarker, marker === targetMarker);
                     return marker === targetMarker
                 });
-                console.log(nextMarkers);
                 let network = nextMarkers[0];
-
                 return {
                     viewMode: VIEW_MODES.STATIONS,
                     zoom: 10,
@@ -144,22 +109,7 @@ class GettingStartedExample extends Component {
     }
 
 
-    handleMarkerRightClick(targetMarker) {
-        /*
-         *      * All you modify is data, and the view is driven by data.
-         *           * This is so called data-driven-development. (And yes, it's now in
-         *                * web front end and even with google maps API.)
-         *                     */
-        const nextMarkers = this.state.markers.filter(marker => marker !== targetMarker);
-        console.log("handleMarkerRightClick", targetMarker);
-        this.setState({
-            markers: nextMarkers,
-        });
-    }
-
-
     render() {
-
         return (
             <div style={{ height: `100%` }}>
                 <Map
@@ -171,7 +121,6 @@ class GettingStartedExample extends Component {
                     }
                     zoom={this.state.zoom}
                     center={this.state.center}
-                    onMapLoad={this.handleMapLoad}
                     markers={this.state.markers}
                     onMarkerClick={this.handleMarkerClick}
                     onCloseClick={this.handleCloseClick}

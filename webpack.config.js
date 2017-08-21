@@ -6,11 +6,14 @@ const APP_DIR = path.resolve(__dirname, 'public/javascript');
 
 let config = {
     entry: APP_DIR + '/app.jsx',
+
     output: {
         path: BUILD_DIR,
-        filename: 'app.min.js'
+        filename: 'app.min.js',
+
     },
     module: {
+
         loaders: [
             {
                 test: /\.jsx?/,
@@ -18,7 +21,7 @@ let config = {
                 loader: 'babel-loader',
                 query: {
                     presets: ['es2015']
-                }
+                },
 
             }
         ]
