@@ -11,11 +11,15 @@ let config = {
         filename: 'app.min.js'
     },
     module: {
-        loaders : [
+        loaders: [
             {
                 test: /\.jsx?/,
-                include : APP_DIR,
-                loader : 'babel-loader'
+                include: APP_DIR,
+                loader: 'babel-loader',
+                query: {
+                    presets: ['es2015']
+                }
+
             }
         ]
     }

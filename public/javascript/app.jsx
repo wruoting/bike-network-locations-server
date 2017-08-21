@@ -1,40 +1,45 @@
 import { default as React, Component } from 'react';
 import { render } from 'react-dom';
 import { withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps";
-
-class Station {
-    constructor(obj) {
-        this.emptySlots = obj.emptySlots;
-        this.freeBikes = obj.freeBikes;
-        this.id = obj.id;
-        this.key = obj.name;
-        this.timestamp = obj.timestamp;
-        this.position = {
-            lat: obj.lat,
-            lng: obj.lng
-        }
-        this.showInfo = false;
-    }
-}
+import { Station, Network } from './models.js';
 
 
-class Network {
-    constructor(obj) {
-        this.stations = [];
-        this.position = {
-            lat: obj.lat,
-            lng: obj.lng
-        };
-        this.key = obj.key;
-        this.defaultAnimation = 2
-    }
+const Map = withGoogleMap(props => (
+    <GoogleMap
+        defaultZoom={props.zoom}
+        defaultCenter={props.center}
+        onClick={props.onMapClick}
+    >
+        {props.markers.map((marker, index) => (
+            <Marker
+                key={index}
+                {...marker}
+                onClick={() => props.onMarkerClick(marker)}
+            >
+                {marker.showInfo && (
+                    <InfoWindow onCloseClick={() => props.onCloseClick(marker)}>
+                        <div>
+                            <ul>
+                                <li>Name: {marker.key}</li>
+                                <li>Free bikes: {marker.freeBikes}</li>
+                                <li>
+                                    Available slots:
+                                    <button name="addSlot">-</button>
+                                    <span id="numberOfSlots">{marker.emptySlots}</span>
+                                    <button name="subtractSlot">+</button>
+                                </li>
+                                <li>Average Review Rating: ★★★½</li>
+                                <li><button name="addReview">Add Review</button></li>
+                            </ul>
+                        </div>
+                    </InfoWindow>
+                )}
+            </Marker>
+        ))}
+    </GoogleMap>
+));
 
-    addStation(obj) {
-        let s = new Station(obj);
-        this.stations.push(s);
-    }
 
-}
 
 const VIEW_MODES = {
     STATIONS: "stations",
@@ -66,7 +71,7 @@ class GettingStartedExample extends Component {
         this.handleMarkerRightClick = this.handleMarkerRightClick.bind(this);
         this.handleMarkerClick = this.handleMarkerClick.bind(this);
         this.handleCloseClick = this.handleCloseClick.bind(this);
-        
+
 
     }
     handleMapLoad(map) {
@@ -112,7 +117,7 @@ class GettingStartedExample extends Component {
 
                 return {
                     viewMode: VIEW_MODES.STATIONS,
-                    zoom: 11,
+                    zoom: 10,
                     center: network.position,
                     markers: network.stations,
                 }
@@ -122,10 +127,8 @@ class GettingStartedExample extends Component {
         else {
             this.setState({
                 markers: this.state.markers.map((marker) => {
-                    if (marker === targetMarker) {
-                        return { ...marker, showInfo: true}
-                      }
-                      return marker;              
+                    marker.showInfo = (marker === targetMarker)
+                    return marker;
                 })
             })
         }
@@ -133,18 +136,13 @@ class GettingStartedExample extends Component {
 
     handleCloseClick(targetMarker) {
         this.setState({
-          markers: this.state.markers.map(marker => {
-            if (marker === targetMarker) {
-              return {
-                ...marker,
-                showInfo: false,
-              };
-            }
-            return marker;
-          }),
+            markers: this.state.markers.map(marker => {
+                marker.showInfo = false;
+                return marker;
+            }),
         });
-      }
-    
+    }
+
 
     handleMarkerRightClick(targetMarker) {
         /*
@@ -161,34 +159,6 @@ class GettingStartedExample extends Component {
 
 
     render() {
-        let Map = withGoogleMap(props => (
-            <GoogleMap
-                defaultZoom={props.zoom}
-                defaultCenter={props.center}
-                onClick={props.onMapClick}
-            >
-                {props.markers.map((marker, index) => (
-                    <Marker
-                        key={index}
-                        {...marker}
-                        onClick={() => props.onMarkerClick(marker)}
-                    >
-                    {marker.showInfo && (
-                        <InfoWindow onCloseClick={() => props.onCloseClick(marker)}>
-                        <div>
-                            <ul>
-                            <li>Name: {marker.key}</li>        
-                            <li>Free bikes: {marker.freeBikes}</li>
-                            <li>Empty slots: {marker.emptySlots}</li>
-                            </ul>
-                        </div>
-                      </InfoWindow>
-                    )}
-                    </Marker>
-                ))}
-            </GoogleMap>
-        ));
-
 
         return (
             <div style={{ height: `100%` }}>
