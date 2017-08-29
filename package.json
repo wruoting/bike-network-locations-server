@@ -6,7 +6,9 @@
     "start": "node bin/www",
     "dev": "nodemon bin/www --exec \"node --require dotenv/config --require babel-register\"",
     "prd": "pm2 start bin/www",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "seed": "node seed/script",
+    "seed-script": "node seed/seed-script"
   },
   "dependencies": {
     "babel-preset-env": "^1.6.0",
@@ -31,6 +33,21 @@
     "eslint": "^4.4.1",
     "eslint-config-airbnb-base": "^11.3.1",
     "eslint-plugin-import": "^2.7.0",
-    "nodemon": "^1.8.1"
-  }
+    "nodemon": "^1.8.1",
+    "request": "^1.9.9",
+    "read-file": "^0.2.0"
+  },
+  "description": "1) Design the schema for the database\r 2) Provide an API to list the networks\r 3) Provide an API to get details on a specific network\r 4) Provide an API to update the available slots in a specific location\r 5) Provide an API to update that a location is closed\r 6) Provide an API to update that a location is not safe for use\r 7) Provide an API to allow users to share reviews on a specific location (no sign in needed).",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Spence-S/bike-network-locations-server.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Spence-S/bike-network-locations-server/issues"
+  },
+  "homepage": "https://github.com/Spence-S/bike-network-locations-server#readme"
 }

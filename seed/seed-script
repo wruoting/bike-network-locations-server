@@ -1,0 +1,9 @@
+var mongoose = require('mongoose');
+var read = require('read-file');
+
+
+var buffer = read.sync('./seed/seed.txt');
+
+var mongoSchema = mongoose.Schema({
+  buffer
+})
