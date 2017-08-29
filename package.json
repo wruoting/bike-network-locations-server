@@ -6,12 +6,15 @@
     "start": "node bin/www",
     "dev": "nodemon app --exec \"node --require dotenv/config --require babel-register\"",
     "prd": "pm2 start bin/www",
-    "test": "export NODE_ENV=test && nodemon --exec \"mocha --require babel-register\""
+    "test": "export NODE_ENV=test && nodemon --exec \"mocha --require babel-register\"",
+    "seed": "node seed/seed-script"
   },
   "dependencies": {
-    "babel-loader": "^7.1.1",
     "axios": "^0.16.2",
+    "babel-cli": "^6.26.0",
+    "babel-loader": "^7.1.1",
     "babel-preset-env": "^1.6.0",
+    "babel-preset-node6": "^11.0.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "babel-register": "^6.24.1",
@@ -34,6 +37,8 @@
     "react-dom": "^15.6.1",
     "react-google-maps": "^7.2.0",
     "react-helmet": "^5.1.3",
+    "read-file": "^0.2.0",
+    "request": "^1.9.9",
     "webpack": "^3.5.4"
   },
   "devDependencies": {
@@ -43,6 +48,8 @@
     "eslint-plugin-import": "^2.7.0",
     "mocha": "^3.5.0",
     "nodemon": "^1.8.1",
-    "supertest": "^3.0.0"
+    "supertest": "^3.0.0",
+    "request": "^1.9.9",
+    "read-file": "^0.2.0"
   }
 }

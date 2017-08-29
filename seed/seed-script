@@ -1,0 +1,15 @@
+var mongoose = require('mongoose');
+var read = require('read-file');
+//babel for js
+require('babel-core/register');
+require('babel-polyfill');
+
+var network = require('../models/network.js')
+
+
+
+// var buffer = read.sync('./seed/seed.txt');
+//
+// var mongoSchema = mongoose.Schema({
+//   buffer
+// })
