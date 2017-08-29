@@ -6,10 +6,8 @@ require('babel-polyfill');
 
 var network = require('../models/network.js')
 
+var buffer = read.sync('./seed/seed.txt');
 
+var uploadJSON = new network(buffer);
 
-// var buffer = read.sync('./seed/seed.txt');
-//
-// var mongoSchema = mongoose.Schema({
-//   buffer
-// })
+console.log(uploadJSON);
