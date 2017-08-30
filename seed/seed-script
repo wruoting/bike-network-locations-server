@@ -4,10 +4,11 @@ var read = require('read-file');
 require('babel-core/register');
 require('babel-polyfill');
 
-var network = require('../models/network.js')
+//var network = require('../models/network.js')
+import Network from '../models/network.js'
 
 var buffer = read.sync('./seed/seed.txt');
 
-var uploadJSON = new network(buffer);
+var uploadJSON = new Network(buffer);
 
 console.log(uploadJSON);

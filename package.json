@@ -7,7 +7,8 @@
     "dev": "nodemon app --exec \"node --require dotenv/config --require babel-register\"",
     "prd": "pm2 start bin/www",
     "test": "export NODE_ENV=test && nodemon --exec \"mocha --require babel-register\"",
-    "seed": "node seed/seed-script"
+    "seed": "node seed/seed-script",
+    "webpack": "node_modules/.bin/webpack"
   },
   "dependencies": {
     "axios": "^0.16.2",
