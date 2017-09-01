@@ -1,26 +1,18 @@
 
-// require('../models/network.js')
-
-// var mongoose = require('mongoose');
-// var read = require('read-file');
-//var network = require('../models/network.js');
-// import mongoose, { Schema } from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 import read from 'read-file';
 import Network from '../models/network.js'
 
 var buffer = read.sync('./seed/seed.txt',{encoding: 'utf8'});
 
-//var uploadJSON = new network(buffer);
+var parsedJSON = JSON.parse(buffer + "");
 
-// var parsedJSON = JSON.parse(buffer);
+var uploadJSON = new Network(parsedJSON);
+
+var savedJSON = uploadJSON.save();
+
+// assert.ok(promise instanceof require('mpromise'));
 //
-// mongoose.connect('mongodb://localhost:27017', function(err, db) {
-//   if(!err) {
-//     console.log("We are connected");
-//   }
+// promise.then(function (doc) {
+//   assert.equal(doc.name, "Guns N' Roses");
 // });
-//
-//
-// //NetworkModel = new NetworkSchema(buffer)
-//
-// console.log(parsedJSON{0});
